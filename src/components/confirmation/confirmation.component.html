@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>O empréstimo foi realizado com sucesso! Veja abaixo o que você contratou</h1>
+  <app-simulation-result
+    class="result"
+    *ngIf="simulatorService.simulator"
+    [simulation]="simulatorService.simulator"
+  >
+  </app-simulation-result>
+</div>

@@ -1,0 +1,60 @@
+<div class="container">
+  <h1>Simulação de empréstimo</h1>
+  <form [formGroup]="form" (ngSubmit)="simulate()">
+    <mat-form-field appearance="standard">
+      <mat-label>Nome do solicitante</mat-label>
+      <input
+        matInput
+        placeholder="Nome do solicitante"
+        formControlName="name"
+      />
+      <mat-error>Obrigatório</mat-error>
+      <mat-error *ngIf="form.controls['name'].errors?.['minlength']">
+        O nome deve ter pelo menos 2 caracteres
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>Valor desejado</mat-label>
+      <input
+        matInput
+        type="number"
+        placeholder="Valor desejado"
+        formControlName="value"
+      />
+      <mat-error>Obrigatório</mat-error>
+      <mat-error *ngIf="form.controls['value'].errors?.['minlength']">
+        Valor mínimo: 1
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>Número de parcelas</mat-label>
+      <input
+        matInput
+        type="number"
+        placeholder="Número de parcelas"
+        formControlName="installments"
+      />
+      <mat-error>Obrigatório</mat-error>
+      <mat-error *ngIf="form.controls['installments'].errors?.['minlength']">
+        Valor mínimo: 1
+      </mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions align="end">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Simular
+      </button>
+    </div>
+  </form>
+  <app-simulation-result class="result"
+    *ngIf="simulator$ | async as simulation"
+    [simulation]="simulation"
+    [btnLabel]="'Confirmar'"
+    (btnOkClick)="openDialog()">
+  </app-simulation-result>
+</div>

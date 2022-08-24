@@ -1,0 +1,25 @@
+<div class="row">
+  <span>Total do valor com juros </span>
+  <span> R$ {{ simulation.totalValue }}</span>
+</div>
+<div class="row">
+  <span>Número de parcelas </span>
+  <span> {{ simulation.installments }}</span>
+</div>
+<div class="row">
+  <span>Valor das parcelas </span>
+  <span> R$ {{ simulation.installmentValue }}</span>
+</div>
+<div class="actions">
+  <button mat-raised-button color="primary" (click)="btnOkClick.emit()">
+    {{ btnLabel }}
+  </button>
+  <button
+    *ngIf="showCancel"
+    mat-raised-button
+    color="primary"
+    (click)="btnCancelClick.emit()"
+  >
+    Cancelar
+  </button>
+</div>
